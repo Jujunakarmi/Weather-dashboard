@@ -10,3 +10,7 @@ body{
     background-size:cover;
     color: white;
 }
+.card{
+    width:100%;
+    min-width:90%;
+}

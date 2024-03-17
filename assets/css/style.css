@@ -14,3 +14,16 @@ body{
     width:100%;
     min-width:90%;
 }
+
+.list-group{
+    list-style: none;
+    margin: 10px 0;
+}
+
+li{
+    margin: 2px;
+}
+
+
+
+

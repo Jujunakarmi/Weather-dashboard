@@ -22,7 +22,7 @@ function searchCity() {
     var previousSearch = JSON.parse(localStorage.getItem("cityName")) || []
     $(".list-group").html("")
     for (var i = 0; i < previousSearch.length; i++) {
-        $(".list-group").append(`<li><button class="previousSearch  btn bg-primary text-light">${previousSearch[i]}</button></li>`)
+        $(".list-group").append(`<li><button class="previousSearch  btn bg-primary bg-gradient text-light">${previousSearch[i]}</button></li>`)
     }
 }
 
@@ -57,7 +57,7 @@ function currentWeather(city) {
             var iconUrl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
 
 
-            //Date for the city(date not showing correct???)
+            //Date for the city
             var convDate = dayjs(response.dt_txt).format("DD/MM/YYYY")
 
             // var date= response.dt
@@ -65,14 +65,14 @@ function currentWeather(city) {
             //parse the response for name of city and concatinate the date and icon.
             $(currentCity).html(response.name + " " + convDate + "<img src=" + iconUrl + ">")
 
-            //Data object for temp from server side Api(Need to be in farenheit??)
+            //Data object for temp from server side Api
             var tempF = (response.main.temp)
             $(currentTemp).html(tempF + "&#8457")
 
             //For Humidity
             $(humidity).html(response.main.humidity + "%")
 
-            //For wind speed(change into mph??)
+            //For wind speed
             $(windSpeed).html(response.wind.speed + " MPH")
 
         })
@@ -95,7 +95,7 @@ function forecast(city) {
             console.log(response)
 
             //Icon for five day forecast  
-            ///NOT CORRECT
+            
             var j = 0;
             for (var i = 0; i < response.list.length; i = i + 8) {
                 var iconCode = response.list[i].weather[0].icon

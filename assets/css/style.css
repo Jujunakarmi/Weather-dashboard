@@ -4,11 +4,11 @@
  
 }
 
-body{
-    background-image: url("/images/clouds.jpeg");   
+/* body{
+    background-image: url("/images/sky.jpeg");   
     background-size:cover;
     color: white;
-}
+} */
 .card{
     width:100%;
     min-width:90%;

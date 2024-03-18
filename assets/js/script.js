@@ -5,8 +5,8 @@ var humidity = $("#humidity")
 var windSpeed = $("#wind-speed")
 var searchButton = ("#search-button")
 
-
 function displayWeather() {
+
     var city = $("#search-city").val()
     //READ - PArse
     var previousSearch = JSON.parse(localStorage.getItem("cityName")) || []
@@ -19,10 +19,15 @@ function displayWeather() {
 }
 
 function searchCity() {
+
+    
     var previousSearch = JSON.parse(localStorage.getItem("cityName")) || []
     $(".list-group").html("")
     for (var i = 0; i < previousSearch.length; i++) {
+        
         $(".list-group").append(`<li><button class="previousSearch  btn bg-primary bg-gradient text-light">${previousSearch[i]}</button></li>`)
+
+      
     }
 }
 
@@ -31,6 +36,8 @@ searchCity()
 $(".list-group").on("click", ".previousSearch", function (event) {
     var city = event.target.textContent //$(this).text()
     // console.log(city,"Previous")
+
+    
     currentWeather(city)
     forecast(city)
 }
@@ -40,6 +47,8 @@ $(".list-group").on("click", ".previousSearch", function (event) {
 function clearHistory() {
     localStorage.removeItem("cityName")
     $(".list-group").html("")
+
+   
 }
 
 function currentWeather(city) {
@@ -52,32 +61,45 @@ function currentWeather(city) {
         })
         .then(function (response) {
             console.log(response)
-            //Data object from server side Api for icon property.
-            var weatherIcon = response.weather[0].icon
-            var iconUrl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
 
 
-            //Date for the city
-            var convDate = dayjs(response.dt_txt).format("DD/MM/YYYY")
+            if(response.cod==="400"){
+                alert("Please enter city. It cannot be empty.")
+                clearHistory()
+              }else if(response.cod==="404"){
+              alert("Entered city not found.!!")
+              clearHistory()
+              } else{
+              
+          
+           
+          
+//Data object from server side Api for icon property.
+var weatherIcon = response.weather[0].icon
+var iconUrl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
 
-            // var date= response.dt
 
-            //parse the response for name of city and concatinate the date and icon.
-            $(currentCity).html(response.name + " " + convDate + "<img src=" + iconUrl + ">")
+//Date for the city
+var convDate = dayjs(response.dt_txt).format("DD/MM/YYYY")
 
-            //Data object for temp from server side Api
-            var tempF = (response.main.temp)
-            $(currentTemp).html(tempF + "&#8457")
+// var date= response.dt
 
-            //For Humidity
-            $(humidity).html(response.main.humidity + "%")
+//parse the response for name of city and concatinate the date and icon.
+$(currentCity).html(response.name + " " + convDate + "<img src=" + iconUrl + ">")
 
-            //For wind speed
-            $(windSpeed).html(response.wind.speed + " MPH")
+//Data object for temp from server side Api
+var tempF = (response.main.temp)
+$(currentTemp).html(tempF + "&#8457")
+
+//For Humidity
+$(humidity).html(response.main.humidity + "%")
+
+//For wind speed
+$(windSpeed).html(response.wind.speed + " MPH")}
 
         })
 
-
+    
 }
 
 
@@ -95,7 +117,7 @@ function forecast(city) {
             console.log(response)
 
             //Icon for five day forecast  
-            
+
             var j = 0;
             for (var i = 0; i < response.list.length; i = i + 8) {
                 var iconCode = response.list[i].weather[0].icon

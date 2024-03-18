@@ -10,7 +10,7 @@ Here are some of the screenshots:
 ![Second page of screenshot](./images/Screenshot-2.png)
 
 # Usage
-
+This weather dashboard application is very user friendly app. Just type in the name of the country or any city you want to check the weather for. Click on the search button just next to it. It will show you the name of the desired city current date, current temperature in Fahrenheit, Humidity, Wind speed in MPH. Just below that you can see the weather forecast for upto 5 days which also includes date, current temperature in Fahrenheit, Humidity, Wind speed in MPH. And the best thing is that it does have a local storage set up that means whatever you searched for it will be saved in the history and you have option to click it again and rewatch the whole thing again and you can also clear the history of you want to.
 
 # License
 &copy; Copyright 2024 Juju Nakarmi

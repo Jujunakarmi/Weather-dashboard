@@ -6,7 +6,6 @@
 
 body{
     background-image: url("/images/gorgeous-clouds-background-with-blue-sky-design_1017-25501..jpeg");   
-    animation-timing-function: ease-in;
     background-size:cover;
     color: white;
 }
